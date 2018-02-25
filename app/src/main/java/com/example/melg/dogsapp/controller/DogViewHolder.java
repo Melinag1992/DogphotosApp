@@ -26,10 +26,6 @@ class DogViewHolder extends RecyclerView.ViewHolder {
         dogImage = itemView.findViewById(R.id.dog_iv_imageview);
 
 
-
-
-
-
     }public void onBind(String dogUrl){
 
 

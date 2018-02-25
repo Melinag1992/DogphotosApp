@@ -37,8 +37,8 @@
                 android:id="@+id/terrier_imagev"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/terrier_textview"
                 android:src="@drawable/ic_launcher_background" />
         </RelativeLayout>
 
@@ -69,8 +69,8 @@
                 android:id="@+id/spaniel_imagev"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/spaniel_textv"
                 android:src="@drawable/ic_launcher_background" />
         </RelativeLayout>
 
@@ -101,8 +101,9 @@
                 android:id="@+id/retriever_imagev"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
+
                 android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/retriever_textv"
                 android:src="@drawable/ic_launcher_background" />
         </RelativeLayout>
 
@@ -132,8 +133,10 @@
                 android:id="@+id/poodle_imagev"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
+
+
                 android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/poodle_textv"
                 android:src="@drawable/ic_launcher_background" />
         </RelativeLayout>
 

@@ -50,10 +50,10 @@ public class BreedsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_breeds);
 
         setviews();
-        setCardViewImage(terrierCardView,"terrier",terrierImage);
-        setCardViewImage(spanielCardView,"spaniel",spanielImage);
-        setCardViewImage(retrieverCardView,"retriever",retrieverImage);
-        setCardViewImage(poodleCardView,"poodle",poodleImage);
+        setCardViewImage(terrierCardView,getString(R.string.terrier),terrierImage);
+        setCardViewImage(spanielCardView,getString(R.string.spaniel),spanielImage);
+        setCardViewImage(retrieverCardView,getString(R.string.retriever),retrieverImage);
+        setCardViewImage(poodleCardView,getString(R.string.poodle),poodleImage);
         setCardonClick();
 
 
@@ -63,7 +63,7 @@ public class BreedsActivity extends AppCompatActivity{
         username = intent.getStringExtra("username");
 
 
-        welcomeMessage.setText("What kind of Dog would you like to see, " + username + "?");
+        welcomeMessage.setText(getString(R.string.welcome) + username + "?");
 
 
 

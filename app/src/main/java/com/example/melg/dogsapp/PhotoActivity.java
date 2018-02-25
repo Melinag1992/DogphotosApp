@@ -53,6 +53,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
 
 
