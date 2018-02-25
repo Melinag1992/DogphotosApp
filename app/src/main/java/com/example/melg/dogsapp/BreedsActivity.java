@@ -63,7 +63,7 @@ public class BreedsActivity extends AppCompatActivity{
         username = intent.getStringExtra("username");
 
 
-        welcomeMessage.setText(getString(R.string.welcome) + username + "?");
+        welcomeMessage.setText(getString(R.string.welcome) + " "+ username + "?");
 
 
 
