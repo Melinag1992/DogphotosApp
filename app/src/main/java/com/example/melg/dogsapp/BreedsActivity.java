@@ -158,6 +158,7 @@ public class BreedsActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
 

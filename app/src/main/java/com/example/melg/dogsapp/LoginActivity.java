@@ -43,13 +43,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (username.getText().toString().trim().equalsIgnoreCase("")) {
-                    username.setError("Please enter a username");
+                    username.setError(getString(R.string.enterusername));
                 } if (password.getText().toString().trim().equalsIgnoreCase("")) {
-                    password.setError("Please enter a password");
+                    password.setError(getString(R.string.enterpassword));
                 } else if (password.getText().toString() != null && username.getText().toString() != null) {
 
                     if (password.getText().toString().contains(username.getText().toString())) {
-                        password.setError("password cannot contain username");
+                        password.setError(getString(R.string.cannotcontainusername));
                     } if (!password.getText().toString().contains(username.getText().toString())) {
                         sharedUsername = username.getText().toString();
                         sharedPassword = password.getText().toString();
@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("Password", sharedPassword);
                         editor.commit();
 
-                        Toast.makeText(LoginActivity.this, sharedUsername + " = " + "Username" + "\n " + sharedPassword, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LoginActivity.this, sharedUsername + " = " + "Username" + "\n " + sharedPassword, Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(LoginActivity.this,BreedsActivity.class);
                         if(sharedPrefs.getString("username", null) != null ){
