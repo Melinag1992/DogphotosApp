@@ -1,6 +1,7 @@
 package com.example.melg.dogsapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class PhotoActivity extends AppCompatActivity {
 
     private ImageView dogImage;
     private String dogImageURL;
+    private SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class PhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo);
 
         dogImage = findViewById(R.id.dog_photo);
+
+        sharedPrefs = getApplicationContext().getSharedPreferences("mySharedPrefs", MODE_PRIVATE);
+
 
         Intent intent = getIntent();
         dogImageURL = intent.getStringExtra("URLString");
@@ -47,6 +52,12 @@ public class PhotoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.clear();
+        editor.commit();
+
+
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);

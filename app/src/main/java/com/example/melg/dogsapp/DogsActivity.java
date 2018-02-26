@@ -1,6 +1,7 @@
 package com.example.melg.dogsapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,12 +35,14 @@ public class DogsActivity extends AppCompatActivity {
     private String breedName;
     private RecyclerView recyclerView;
     private List<String> dogImages = new ArrayList<>();
-
+    private SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dogs);
+
+        sharedPrefs = getApplicationContext().getSharedPreferences("mySharedPrefs", MODE_PRIVATE);
 
         breedTextView = findViewById(R.id.breed_textview);
 
@@ -94,6 +97,11 @@ public class DogsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.clear();
+        editor.commit();
+
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);

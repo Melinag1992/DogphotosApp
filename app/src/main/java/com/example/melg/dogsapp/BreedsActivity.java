@@ -40,13 +40,14 @@ public class BreedsActivity extends AppCompatActivity {
     private CardView spanielCardView;
     private CardView retrieverCardView;
     private CardView poodleCardView;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeds);
-        SharedPreferences sharedPreferences = this.getSharedPreferences("mySharedPrefs", MODE_PRIVATE);
+         sharedPreferences = this.getSharedPreferences("mySharedPrefs", MODE_PRIVATE);
 
         setviews();
         setCardViewImage(terrierCardView, getString(R.string.terrier), terrierImage);
@@ -156,6 +157,9 @@ public class BreedsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
