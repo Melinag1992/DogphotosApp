@@ -29,13 +29,12 @@ import retrofit2.Response;
  */
 
 
-public class BreedsActivity extends AppCompatActivity{
+public class BreedsActivity extends AppCompatActivity {
     private ImageView terrierImage;
     private ImageView poodleImage;
     private ImageView retrieverImage;
     private ImageView spanielImage;
     private TextView welcomeMessage;
-    //    private SharedPreferences sharedPreferences = this.getSharedPreferences("mySharedPrefs",MODE_PRIVATE);
     private String username;
     private CardView terrierCardView;
     private CardView spanielCardView;
@@ -43,32 +42,29 @@ public class BreedsActivity extends AppCompatActivity{
     private CardView poodleCardView;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeds);
+        SharedPreferences sharedPreferences = this.getSharedPreferences("mySharedPrefs", MODE_PRIVATE);
 
         setviews();
-        setCardViewImage(terrierCardView,getString(R.string.terrier),terrierImage);
-        setCardViewImage(spanielCardView,getString(R.string.spaniel),spanielImage);
-        setCardViewImage(retrieverCardView,getString(R.string.retriever),retrieverImage);
-        setCardViewImage(poodleCardView,getString(R.string.poodle),poodleImage);
+        setCardViewImage(terrierCardView, getString(R.string.terrier), terrierImage);
+        setCardViewImage(spanielCardView, getString(R.string.spaniel), spanielImage);
+        setCardViewImage(retrieverCardView, getString(R.string.retriever), retrieverImage);
+        setCardViewImage(poodleCardView, getString(R.string.poodle), poodleImage);
         setCardonClick();
 
 
+        username = sharedPreferences.getString("username","");
 
 
-        Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-
-
-        welcomeMessage.setText(getString(R.string.welcome) + " "+ username + "?");
-
+        welcomeMessage.setText(getString(R.string.welcome) + " " + username + "?");
 
 
     }
-    public void setviews(){
+
+    public void setviews() {
         terrierImage = findViewById(R.id.terrier_imagev);
         poodleImage = findViewById(R.id.poodle_imagev);
         retrieverImage = findViewById(R.id.retriever_imagev);
@@ -85,39 +81,39 @@ public class BreedsActivity extends AppCompatActivity{
 
 
     public void setCardViewImage(View v, String breed, final ImageView imageView) {
-                Call<DogPojo> getResults =RetrofitInstance.getInstance()
-                        .getApi()
-                        .getDogResults(breed);
-                getResults.enqueue(new Callback<DogPojo>() {
-                    public static final String TAG = "terrier " ;
+        Call<DogPojo> getResults = RetrofitInstance.getInstance()
+                .getApi()
+                .getDogResults(breed);
+        getResults.enqueue(new Callback<DogPojo>() {
+            public static final String TAG = "terrier ";
 
-                    @Override
-                    public void onResponse(Call<DogPojo> call, Response<DogPojo> response) {
+            @Override
+            public void onResponse(Call<DogPojo> call, Response<DogPojo> response) {
 
 
-                        Picasso.with(getApplicationContext())
-                                .load(response.body().getMessage())
-                                .resize(500,500)
-                                .into(imageView);
+                Picasso.with(getApplicationContext())
+                        .load(response.body().getMessage())
+                        .resize(500, 500)
+                        .into(imageView);
 
-                        Log.d(TAG, "onResponse: " + response.body());
+                Log.d(TAG, "onResponse: " + response.body());
 
-                    }
+            }
 
-                    @Override
-                    public void onFailure(Call<DogPojo> call, Throwable t) {
-                        t.getMessage();
+            @Override
+            public void onFailure(Call<DogPojo> call, Throwable t) {
+                t.getMessage();
 
-                    }
-                });
+            }
+        });
 
     }
 
-    public void setCardonClick(){
+    public void setCardonClick() {
         poodleCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startIntents("poodle");
+                startIntents("poodle");
             }
         });
         spanielCardView = findViewById(R.id.spaniel_card);
@@ -142,12 +138,14 @@ public class BreedsActivity extends AppCompatActivity{
             }
         });
     }
-    public void startIntents(String breed){
+
+    public void startIntents(String breed) {
         Intent intent = new Intent(this, DogsActivity.class);
-        intent.putExtra("breed",breed);
+        intent.putExtra("breed", breed);
         startActivity(intent);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -164,7 +162,6 @@ public class BreedsActivity extends AppCompatActivity{
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

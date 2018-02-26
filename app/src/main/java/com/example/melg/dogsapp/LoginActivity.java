@@ -37,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         submit = findViewById(R.id.button);
         sharedPrefs = getApplicationContext().getSharedPreferences(SHAREDPREF, MODE_PRIVATE);
 
+        if(sharedPrefs.getString("username", null) != null ){
+            startActivity(new Intent(LoginActivity.this,BreedsActivity.class));
+            finish();
+
+        }
 //
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (password.getText().toString().contains(username.getText().toString())) {
                         password.setError(getString(R.string.cannotcontainusername));
-                    } if (!password.getText().toString().contains(username.getText().toString())) {
+                    } else {
+
                         sharedUsername = username.getText().toString();
                         sharedPassword = password.getText().toString();
                         SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -60,12 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //                        Toast.makeText(LoginActivity.this, sharedUsername + " = " + "Username" + "\n " + sharedPassword, Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(LoginActivity.this,BreedsActivity.class);
-                        if(sharedPrefs.getString("username", null) != null ){
-                            intent.putExtra("username",sharedPrefs.getString("username", null));
-                            startActivity(intent);
-                        }
-
+                        startActivity(new Intent(LoginActivity.this,BreedsActivity.class));
 
                     }
                 }
